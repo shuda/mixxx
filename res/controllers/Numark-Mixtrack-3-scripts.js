@@ -1067,13 +1067,6 @@ NumarkMixtrack3.deckFromGroup = function(group) { // DFG // for easy find
     return this.decks["D" + decknum];
 };
 
-NumarkMixtrack3.deck.prototype.getKnobStateObject = function (group, control) {
-    for (var i = 0; i <= this.KnobState.length; i++) {
-       if(this.KnobState[i].group == group && this.KnobState[i].control == control)
-        return this.KnobState[i];
-       }
-};
-
 NumarkMixtrack3.ShiftButton = function(channel, control, value, status, group) {
     var deck = NumarkMixtrack3.deckFromGroup(group);
     deck.shiftKey = (value === DOWN);
