@@ -27,6 +27,10 @@ var PitchBendOnWheelOff = true;
 // use mixxx softtakeover implementation instead of the script implemented method
 // suggestion: true 
 var UseEngineSoftTakeOver = true;
+
+// true (default) - simple (without shift) Browse Button press toggles library maximization
+// false - simple browse button does nothing
+var BrowseButtonToggleLibrary = true;
 /**************************
  *  scriptpause
  * ---------------
@@ -1102,14 +1106,13 @@ NumarkMixtrack3.BrowseButton = function(channel, control, value, status, group) 
 
     if (value === ON) {
 	    if (shifted) {
+            engine.setValue("[Library]", "TriggerItem", 0);
 	        // SHIFT + BROWSE push : directory mode -- > Open/Close selected side bar item
-	        engine.setValue("[Library]", "GoToItem", true);
 	    } else {
 	        // Browse push : maximize/minimize library view
-	        if (value === ON) {
+            if(BrowseButtonToggleLibrary)
 	            script.toggleControl("[Skin]", "show_maximized_library");
 	        }
-	    }
     }
 };
 
